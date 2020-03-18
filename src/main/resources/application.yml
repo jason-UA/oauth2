@@ -4,3 +4,8 @@ security:
       client-id: test
       client-secret: test1234
       registered-redirect-uri: http://mrbird.cc
+
+spring:
+  redis:
+    host: localhost
+    port: 6379
