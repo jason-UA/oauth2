@@ -1,6 +1,6 @@
 package com.example.oauth2.security.smsCode;
 
-import com.example.oauth2.security.model.UserDetailService;
+import com.example.oauth2.security.service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;

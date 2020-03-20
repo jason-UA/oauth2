@@ -1,12 +1,14 @@
 package com.example.oauth2.security.controller;
 
+import com.example.oauth2.security.model.User;
+import com.example.oauth2.security.model.UserEntity;
+import com.example.oauth2.security.service.UserService;
 import com.example.oauth2.security.smsCode.SmsCode;
 import com.example.oauth2.security.smsCode.RedisCodeService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,9 @@ public class ValidateController {
 
     @Autowired
     RedisCodeService redisCodeService;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("/code/sms")
     public String createSmsCode(HttpServletRequest request, HttpServletResponse response, String mobile) throws IOException {
@@ -39,5 +44,12 @@ public class ValidateController {
     private SmsCode createSMSCode() {
         String code = RandomStringUtils.randomNumeric(6);
         return new SmsCode(code, 60);
+    }
+
+
+    @PostMapping("/register")
+    public UserEntity register(@RequestBody User user) {
+        UserEntity userEntity = userService.insertUser(user);
+        return userEntity;
     }
 }
