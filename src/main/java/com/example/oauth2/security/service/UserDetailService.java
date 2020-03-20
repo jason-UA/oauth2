@@ -25,4 +25,13 @@ public class UserDetailService implements UserDetailsService {
         return userDetails;
     }
 
+
+    public UserDetails loadUserByMobileNumber(String mobileNumber) throws UsernameNotFoundException {
+        UserEntity user = userService.getUserByMobileNumber(mobileNumber);
+        UserDetails userDetails = new User(user.getUsername(), user.getPassword(), user.isEnabled(),
+                user.isAccountNonExpired(), user.isCredentialsNonExpired(), user.isAccountNonLocked(),
+                AuthorityUtils.commaSeparatedStringToAuthorityList(user.getRole().name()));
+        return userDetails;
+    }
+
 }

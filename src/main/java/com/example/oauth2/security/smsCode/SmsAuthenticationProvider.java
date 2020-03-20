@@ -18,7 +18,7 @@ public class SmsAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         SmsAuthenticationToken authenticationToken = (SmsAuthenticationToken) authentication;
-        UserDetails userDetails = userDetailService.loadUserByUsername((String) authenticationToken.getPrincipal());
+        UserDetails userDetails = userDetailService.loadUserByMobileNumber((String) authenticationToken.getPrincipal());
 
         if (userDetails == null) {
             throw new InternalAuthenticationServiceException("未找到与该手机号对应的用户");

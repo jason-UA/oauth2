@@ -23,10 +23,14 @@ public class SmsAuthenticationConfig extends SecurityConfigurerAdapter<DefaultSe
     @Autowired
     private UserDetailService userDetailService;
 
+    @Autowired
+    private RedisCodeService redisCodeService;
+
 
     @Override
     public void configure(HttpSecurity builder) throws Exception {
         SmsAuthenticationFilter smsAuthenticationFilter = new SmsAuthenticationFilter();
+        smsAuthenticationFilter.setRedisCodeService(redisCodeService);
         smsAuthenticationFilter.setAuthenticationManager(builder.getSharedObject(AuthenticationManager.class));
         smsAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
         smsAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandler);

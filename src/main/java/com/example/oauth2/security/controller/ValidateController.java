@@ -31,7 +31,7 @@ public class ValidateController {
     public String createSmsCode(HttpServletRequest request, HttpServletResponse response, String mobile) throws IOException {
         SmsCode smsCode = createSMSCode();
         try {
-            redisCodeService.save(smsCode, new ServletWebRequest(request), mobile);
+            redisCodeService.save(smsCode, request, mobile);
         } catch (Exception e) {
             log.error(e.getMessage());
         }
