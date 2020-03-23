@@ -8,12 +8,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class UserDeo {
     private String username;
 
     private String password;
 
-    private String mobileNumber;
+    private String mobile;
+
+    private String smsCode;
 
     private String email;
 }

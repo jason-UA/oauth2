@@ -1,6 +1,6 @@
 package com.example.oauth2.security.service;
 
-import com.example.oauth2.security.model.User;
+import com.example.oauth2.security.model.UserDeo;
 import com.example.oauth2.security.model.UserRole;
 import com.example.oauth2.security.model.UserEntity;
 import com.example.oauth2.security.repository.UserRepository;
@@ -21,12 +21,12 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public UserEntity insertUser(User user) {
+    public UserEntity insertUser(UserDeo userDeo) {
         UserEntity userEntity = UserEntity.builder()
-                .username(user.getUsername())
-                .password(passwordEncoder.encode(user.getPassword()))
-                .email(user.getEmail())
-                .mobileNumber(user.getMobileNumber())
+                .username(userDeo.getUsername())
+                .password(passwordEncoder.encode(userDeo.getPassword()))
+                .email(userDeo.getEmail())
+                .mobileNumber(userDeo.getMobile())
                 .role(UserRole.user)
                 .accountNonExpired(true)
                 .accountNonLocked(true)

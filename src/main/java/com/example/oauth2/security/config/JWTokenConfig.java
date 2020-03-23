@@ -2,6 +2,7 @@ package com.example.oauth2.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
@@ -26,4 +27,6 @@ public class JWTokenConfig {
         accessTokenConverter.setSigningKey("test_key");
         return accessTokenConverter;
     }
+
+
 }

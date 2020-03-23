@@ -1,8 +1,9 @@
 package com.example.oauth2.security.config;
 
-import com.example.oauth2.security.smsCode.SmsAuthenticationConfig;
+import com.example.oauth2.security.smsCode.login.SmsAuthenticationConfig;
 import com.example.oauth2.security.handler.MyAuthenticationFailureHandler;
 import com.example.oauth2.security.handler.MyAuthenticationSuccessHandler;
+import com.example.oauth2.security.smsCode.register.SmsRegisterAuthenticationConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,21 +23,25 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Autowired
     private SmsAuthenticationConfig smsAuthenticationConfig;
 
+    @Autowired
+    private SmsRegisterAuthenticationConfig smsRegisterAuthenticationConfig;
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.formLogin()
-                .loginProcessingUrl("/login")
                 .successHandler(authenticationSuccessHandler)
                 .failureHandler(authenticationFailureHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/code/sms", "/register")
+                .antMatchers("/code/sms", "/register", "/revokeToken")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .csrf()
                 .disable()
-                .apply(smsAuthenticationConfig);
+                .apply(smsAuthenticationConfig)
+                .and()
+                .apply(smsRegisterAuthenticationConfig);
     }
 }

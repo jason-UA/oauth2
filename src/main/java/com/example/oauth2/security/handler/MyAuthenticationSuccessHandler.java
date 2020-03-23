@@ -67,6 +67,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
 
         OAuth2AccessToken token = authorizationServerTokenServices.createAccessToken(auth2Authentication);
 
+
         log.info("登录成功");
         httpServletResponse.setContentType("application/json;charset=UTF-8");
         httpServletResponse.getWriter().write(new ObjectMapper().writeValueAsString(token));

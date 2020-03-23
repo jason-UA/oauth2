@@ -1,5 +1,6 @@
-package com.example.oauth2.security.smsCode;
+package com.example.oauth2.security.smsCode.login;
 
+import com.example.oauth2.security.model.UserDeo;
 import com.example.oauth2.security.service.UserDetailService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,8 @@ public class SmsAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         SmsAuthenticationToken authenticationToken = (SmsAuthenticationToken) authentication;
-        UserDetails userDetails = userDetailService.loadUserByMobileNumber((String) authenticationToken.getPrincipal());
+        UserDeo userDeo = (UserDeo)authenticationToken.getPrincipal();
+        UserDetails userDetails = userDetailService.loadUserByMobileNumber(userDeo.getMobile());
 
         if (userDetails == null) {
             throw new InternalAuthenticationServiceException("未找到与该手机号对应的用户");
