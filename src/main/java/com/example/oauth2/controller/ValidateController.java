@@ -1,4 +1,4 @@
-package com.example.oauth2.security.controller;
+package com.example.oauth2.controller;
 
 import com.example.oauth2.security.smsCode.RedisCodeService;
 import com.example.oauth2.security.smsCode.SmsCode;

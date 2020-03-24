@@ -1,4 +1,4 @@
-package com.example.oauth2.security.repository;
+package com.example.oauth2.repository;
 
 import com.example.oauth2.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,9 +1,9 @@
-package com.example.oauth2.security.service;
+package com.example.oauth2.service;
 
 import com.example.oauth2.model.UserDeo;
 import com.example.oauth2.model.UserRole;
 import com.example.oauth2.model.User;
-import com.example.oauth2.security.repository.UserRepository;
+import com.example.oauth2.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

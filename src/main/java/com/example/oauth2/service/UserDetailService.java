@@ -1,4 +1,4 @@
-package com.example.oauth2.security.service;
+package com.example.oauth2.service;
 
 import com.example.oauth2.model.UserDeo;
 import com.example.oauth2.model.User;
