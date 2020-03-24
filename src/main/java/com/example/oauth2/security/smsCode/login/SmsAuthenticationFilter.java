@@ -1,6 +1,6 @@
 package com.example.oauth2.security.smsCode.login;
 
-import com.example.oauth2.security.model.UserDeo;
+import com.example.oauth2.model.UserDeo;
 import com.example.oauth2.security.smsCode.RedisCodeService;
 import com.example.oauth2.security.smsCode.SmsUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class SmsAuthenticationFilter extends AbstractAuthenticationProcessingFil
     private RedisCodeService redisCodeService;
 
     public SmsAuthenticationFilter() {
-        super(new AntPathRequestMatcher("/login/mobile", "POST"));
+        super(new AntPathRequestMatcher("/loginMobile", "POST"));
     }
 
     @Override

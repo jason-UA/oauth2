@@ -1,6 +1,6 @@
 package com.example.oauth2.security.smsCode.login;
 
-import com.example.oauth2.security.model.UserDeo;
+import com.example.oauth2.model.UserDeo;
 import com.example.oauth2.security.service.UserDetailService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;

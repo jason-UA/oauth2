@@ -1,7 +1,7 @@
 package com.example.oauth2.security.smsCode;
 
 
-import com.example.oauth2.security.model.UserDeo;
+import com.example.oauth2.model.UserDeo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;

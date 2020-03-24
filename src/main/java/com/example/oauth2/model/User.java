@@ -1,4 +1,4 @@
-package com.example.oauth2.security.model;
+package com.example.oauth2.model;
 
 import lombok.*;
 
@@ -9,14 +9,11 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(callSuper = true)
 @Entity
 @Table(name = "user")
-public class UserEntity implements Serializable {
+public class User extends BaseEntity implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(nullable = false ,name = "user_name")
     private String username;

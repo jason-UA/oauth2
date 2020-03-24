@@ -1,8 +1,8 @@
 package com.example.oauth2.security.service;
 
-import com.example.oauth2.security.model.UserDeo;
-import com.example.oauth2.security.model.UserRole;
-import com.example.oauth2.security.model.UserEntity;
+import com.example.oauth2.model.UserDeo;
+import com.example.oauth2.model.UserRole;
+import com.example.oauth2.model.User;
 import com.example.oauth2.security.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,8 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public UserEntity insertUser(UserDeo userDeo) {
-        UserEntity userEntity = UserEntity.builder()
+    public User insertUser(UserDeo userDeo) {
+        User user = User.builder()
                 .username(userDeo.getUsername())
                 .password(passwordEncoder.encode(userDeo.getPassword()))
                 .email(userDeo.getEmail())
@@ -33,26 +33,26 @@ public class UserService {
                 .credentialsNonExpired(true)
                 .enabled(true)
                 .build();
-        UserEntity savedUser = userRepository.save(userEntity);
+        User savedUser = userRepository.save(user);
         log.info("CREATE USER: {}",  savedUser);
         return savedUser;
     }
 
 
-    public UserEntity getUserByUsername(String username) {
-        UserEntity user = userRepository.findByUsername(username);
+    public User getUserByUsername(String username) {
+        User user = userRepository.findByUsername(username);
         log.info("FIND USER: {}", user);
         return user;
     }
 
-    public UserEntity getUserByEmail(String email) {
-        UserEntity user = userRepository.findByEmail(email);
+    public User getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email);
         log.info("FIND USER: {}", user);
         return user;
     }
 
-    public UserEntity getUserByMobileNumber(String number) {
-        UserEntity user = userRepository.findByMobileNumber(number);
+    public User getUserByMobileNumber(String number) {
+        User user = userRepository.findByMobileNumber(number);
         log.info("FIND USER: {}", user);
         return user;
     }

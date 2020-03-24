@@ -33,7 +33,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .failureHandler(authenticationFailureHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/code/sms", "/register", "/revokeToken")
+                .antMatchers("/codeSms", "/revokeToken")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

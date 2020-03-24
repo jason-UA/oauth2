@@ -13,10 +13,10 @@ import java.nio.charset.StandardCharsets;
 @RestController
 public class UserController {
 
-    @GetMapping("index")
+    @GetMapping("/jwt")
     public Object index(@AuthenticationPrincipal Authentication authentication, HttpServletRequest request) {
         String header = request.getHeader("Authorization");
-        String token = StringUtils.substringAfter(header, "bearer ");
+        String token = StringUtils.substringAfter(header, "Bearer ");
 
         return Jwts.parser().setSigningKey("test_key".getBytes(StandardCharsets.UTF_8)).parseClaimsJws(token).getBody();
     }

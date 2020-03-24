@@ -1,8 +1,5 @@
 package com.example.oauth2.security.controller;
 
-import com.example.oauth2.security.model.UserDeo;
-import com.example.oauth2.security.model.UserEntity;
-import com.example.oauth2.security.service.UserService;
 import com.example.oauth2.security.smsCode.RedisCodeService;
 import com.example.oauth2.security.smsCode.SmsCode;
 import lombok.extern.slf4j.Slf4j;
@@ -12,14 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
-import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
-import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,14 +27,9 @@ public class ValidateController {
     RedisCodeService redisCodeService;
 
     @Autowired
-    UserService userService;
-
-    @Autowired
     TokenStore tokenStore;
 
-
-
-    @GetMapping("/code/sms")
+    @GetMapping("/codeSms")
     public String createSmsCode(HttpServletRequest request, HttpServletResponse response, String mobile) throws IOException {
         SmsCode smsCode = createSMSCode();
         try {
@@ -63,18 +49,10 @@ public class ValidateController {
     }
 
 
-    @PostMapping("/register")
-    public UserEntity register(@RequestBody UserDeo userDeo) {
-        UserEntity userEntity = userService.insertUser(userDeo);
-        return userEntity;
-    }
-
-
     @GetMapping("/revokeToken")
     public String logout(@AuthenticationPrincipal Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
         String header = request.getHeader("Authorization");
         String token = StringUtils.substringAfter(header, "bearer ");
-
         OAuth2AccessToken oAuth2AccessToken = tokenStore.readAccessToken(token);
         tokenStore.removeAccessToken(oAuth2AccessToken);
         return "注销成功";

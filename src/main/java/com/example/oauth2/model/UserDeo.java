@@ -1,4 +1,4 @@
-package com.example.oauth2.security.model;
+package com.example.oauth2.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

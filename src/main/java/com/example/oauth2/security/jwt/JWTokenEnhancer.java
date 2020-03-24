@@ -1,4 +1,4 @@
-package com.example.oauth2.security.config;
+package com.example.oauth2.security.jwt;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
