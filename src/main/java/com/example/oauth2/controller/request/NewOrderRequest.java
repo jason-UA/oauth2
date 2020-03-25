@@ -1,5 +1,7 @@
 package com.example.oauth2.controller.request;
 
+import com.example.oauth2.model.OrderState;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,8 +9,7 @@ import lombok.ToString;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @ToString
 public class NewOrderRequest {
 
@@ -16,5 +17,7 @@ public class NewOrderRequest {
     private String customer;
 
     @NotEmpty
-    private List<String> Coffees;
+    private List<String> coffees;
+
+
 }

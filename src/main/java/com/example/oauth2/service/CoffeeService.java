@@ -14,6 +14,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +34,15 @@ public class CoffeeService {
     }
 
     public List<Coffee> getCoffeeByName(List<String> names) {
-        return coffeeRepository.findByNameInOrderById(names);
+        List<Coffee> coffees =  new ArrayList<>();
+        for (String name : names) {
+            coffees.add(findOneCoffee(name));
+        }
+        return coffees;
+    }
+
+    public Coffee getCoffeeById(Long id) {
+        return coffeeRepository.findById(id).get();
     }
 
 

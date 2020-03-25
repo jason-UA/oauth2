@@ -1,5 +1,7 @@
 package com.example.oauth2.service;
 
+import com.example.oauth2.controller.request.NewOrderRequest;
+import com.example.oauth2.controller.request.UpdateOrderStateRequest;
 import com.example.oauth2.model.Coffee;
 import com.example.oauth2.model.CoffeeOrder;
 import com.example.oauth2.model.OrderState;
@@ -12,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -38,17 +41,22 @@ public class CoffeeOrderService {
         return orderRepository.findAll();
     }
 
-    public CoffeeOrder updateState(Long id, String state) {
-        CoffeeOrder order = orderRepository.findById(id).get();
-        OrderState orderState = OrderState.valueOf(state);
+    public CoffeeOrder findOrderById(Long id) {
+        return orderRepository.findById(id).get();
+    }
+
+    public CoffeeOrder updateOrder(UpdateOrderStateRequest updateOrder) {
+        CoffeeOrder order = findOrderById(updateOrder.getId());
+
+        OrderState orderState = OrderState.valueOf(updateOrder.getState());
         if (orderState.compareTo(order.getState()) <= 0) {
-            log.warn("Wrong State order: {}, {}", state, order.getState());
+            log.warn("Wrong State order: {}, {}", orderState, order.getState());
             return null;
         }
         order.setState(orderState);
-        CoffeeOrder updateOrder = orderRepository.save(order);
-        log.info("Updated Order: {}", updateOrder);
-        return updateOrder;
+        CoffeeOrder updatedOrder = orderRepository.save(order);
+        log.info("Updated Order: {}", updatedOrder);
+        return updatedOrder;
     }
 
 
