@@ -8,8 +8,11 @@ import com.example.oauth2.service.CoffeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -43,9 +46,10 @@ public class CoffeeController {
         return representation;
     }
 
-    @PostMapping("")
+    @PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public Coffee saveCoffee(@RequestBody NewCoffeeRequest coffee) {
+    @PreAuthorize("hasAuthority('admin')")
+    public Coffee saveCoffee(@Valid @RequestBody NewCoffeeRequest coffee) {
         return coffeeService.saveCoffee(coffee);
     }
 

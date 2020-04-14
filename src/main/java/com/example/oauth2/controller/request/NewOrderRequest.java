@@ -1,9 +1,6 @@
 package com.example.oauth2.controller.request;
 
-import com.example.oauth2.model.OrderState;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import javax.validation.constraints.NotEmpty;

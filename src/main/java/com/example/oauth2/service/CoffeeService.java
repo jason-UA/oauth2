@@ -53,7 +53,7 @@ public class CoffeeService {
     public Coffee saveCoffee(NewCoffeeRequest coffee) {
         Coffee newCoffee = Coffee.builder()
                 .name(coffee.getName())
-                .price(Money.of(CurrencyUnit.of("CNY"), coffee.getPrice()))
+                .price(coffee.getPrice())
                 .build();
         return coffeeRepository.save(newCoffee);
     }
